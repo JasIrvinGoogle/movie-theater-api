@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const User = require('../../scooter-project/src/User')
+const User = require('../models/User')
 const router = express.Router()
 
 app.get('/users', async (request, response) => {
