@@ -7,3 +7,8 @@ app.get('/users', async (request, response) => {
     const users = await User.findAll(); 
     response.json(users);
 })
+
+app.get('/users/:id', async (request, response) => {
+    const user = await User.findByPk(request.params.id);
+    response.json(user);
+})
