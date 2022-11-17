@@ -28,3 +28,13 @@ router.put('/users/:id', async (request, response) => {
     })
     response.json(await User.findAll());
 })
+
+//delete a user
+router.delete('/users/:id', async (request, response) => {
+    const deleteUser = await User.destroy({
+        where: {
+            id: request.params.id
+        }
+    })
+    response.json(await User.findAll()); 
+})
