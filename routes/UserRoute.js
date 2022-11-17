@@ -18,3 +18,13 @@ router.get('/users/:id', async (request, response) => {
 //get all shows watched by a user(user id in req.params)
 
 //put update and add a show if user has watched it
+
+//update user
+router.put('/users/:id', async (request, response) => {
+    await User.update(request.body, {
+        where: {
+            id: request.params.id
+        }
+    })
+    response.json(await User.findAll());
+})
