@@ -14,6 +14,10 @@ const userRouter = require('./routes/UserRoute')
 
 app.use(express.static('public'));
 
+app.get('/', async (request, response) => {
+    respond.send('Server is running!')
+})
+
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`)
 });
