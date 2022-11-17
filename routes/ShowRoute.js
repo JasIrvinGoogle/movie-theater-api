@@ -11,7 +11,27 @@ router.get('/shows', async (request, response) => {
 
 //get one show
 router.get('/shows/:id', async (request, response) => {
-    const show = await Shows.findByPk(req.params.id);
+    const show = await Shows.findByPk(request.params.id);
     response.json(show);
+})
+
+//update a show
+router.put('/shows/:id', async (request, response) => {
+    await Show.update(request.body, {
+        where: {
+            id: request.params.id
+        }
+    })
+    response.json(await Show.findAll());
+})
+
+//delete a show
+router.delete('/shows/:id', async (request, response) => {
+    const deleteShow = await Show.destroy({
+        where: {
+            id: request.params.id
+        }
+    })
+    response.json(await Show.findAll()); 
 })
 
