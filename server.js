@@ -9,13 +9,13 @@ app.use(express.urlencoded({extended: true}));
 const showRouter = require('./routes/ShowRoute')
 const userRouter = require('./routes/UserRoute')
 
-//app.use('/users', userRouter);
-//app.use('/shows', showRouter);
+router.use('/users', userRouter);
+router.use('/shows', showRouter);
 
 app.use(express.static('public'));
 
 app.get('/', async (request, response) => {
-    respond.send('Server is running!')
+    response.send('Server is running!')
 })
 
 app.listen(port, () => {
