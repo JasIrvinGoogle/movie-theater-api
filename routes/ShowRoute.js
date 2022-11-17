@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
-const Show = require('../models/Show')
-const router = express.Router()
+const express = require('express');
+const app = express();
+const Show = require('../models/Show');
+const router = express.Router();
 
 //get all shows
 router.get('/shows', async (request, response) => {
@@ -17,7 +17,7 @@ router.get('/shows/:id', async (request, response) => {
 
 //get all shows of a particular genre
 router.get('/genre/:genre', async (request, response) => {
-    const genre = await Show.findAll()
+    const genre = await Show.findAll();
     response.json(genre); 
 })
 
@@ -40,4 +40,6 @@ router.delete('/shows/:id', async (request, response) => {
     })
     response.json(await Show.findAll()); 
 })
+
+module.exports = router; 
 
