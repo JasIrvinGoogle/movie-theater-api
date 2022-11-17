@@ -15,6 +15,12 @@ router.get('/shows/:id', async (request, response) => {
     response.json(show);
 })
 
+//get all shows of a particular genre
+router.get('/genre/:genre', async (request, response) => {
+    const genre = await Show.findAll()
+    response.json(genre); 
+})
+
 //update a show
 router.put('/shows/:id', async (request, response) => {
     await Show.update(request.body, {
