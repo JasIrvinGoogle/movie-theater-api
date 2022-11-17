@@ -11,7 +11,7 @@ router.get('/shows', async (request, response) => {
 
 //get one show
 router.get('/shows/:id', async (request, response) => {
-    const show = await Shows.findByPk(request.params.id);
+    const show = await Show.findByPk(request.params.id);
     response.json(show);
 })
 
