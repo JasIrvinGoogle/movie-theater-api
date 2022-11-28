@@ -3,18 +3,16 @@ const app = express();
 const port = 3000;
 const router = express.Router(); 
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+const usersRouter = require('/routes/userRouter')
+const showsRouter = require('./routes/showRouter')
 
-const showRouter = require('./routes/ShowRoute')
-const userRouter = require('./routes/UserRoute')
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
-router.use('/users', userRouter);
-router.use('/shows', showRouter);
+app.use('/users', usersRouter)
+app.use('/shows', showsRouter)
 
-app.use(express.static('public'));
-
-app.get('/', async (request, response) => {
+app.get('/', (request, response) => {
     response.send('Server is running!')
 })
 
