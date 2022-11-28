@@ -1,21 +1,33 @@
 const express = require('express');
 const app = express();
-const port = 3000;
-const router = express.Router(); 
-
-const usersRouter = require('/routes/userRouter')
-const showsRouter = require('./routes/showRouter')
+const {Sequelize} = require('./db');
+const {User, Show} = require('./models/index')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.use('/users', usersRouter)
-app.use('/shows', showsRouter)
+const port = 3000;
 
-app.get('/', (request, response) => {
-    response.send('Server is running!')
+app.listen(3000, function() {
+    console.log('Server is running on port ' + 3000);
 })
 
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`)
-});
+//Test - no routers
+app.get('/', (request, response) => {
+    response.send('Successfull GET Request made!'); 
+})
+
+app.get('/users', (request, response) => {
+    response.send('Successfull GET Request made to users!'); 
+})
+
+app.get('/username', (request, response) => {
+    response.send('Successful GET Request made to username!')
+})
+
+//Endpoint Testing
+app.get('/shows', async (request, response) => { //not working
+    const shows = await Show.findAll() 
+    response.json({shows}); 
+})
+
