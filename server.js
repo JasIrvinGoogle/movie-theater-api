@@ -51,7 +51,7 @@ app.put('/shows/:id', async (request, response) => {
             id: request.params.id
         }
     })
-    response.json(await Show.findByPk(request.params.id)); 
+    response.json(await Show.findAll()); 
 })
 
 app.delete('/shows/:id', async (request, response) => {
